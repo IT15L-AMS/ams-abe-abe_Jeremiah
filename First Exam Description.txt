@@ -1,0 +1,73 @@
+Please read the attached file Academic Management System - v2
+
+Your Task for your first lab exam is the Phase 1: Authentication & Authorization
+
+Note:
+Project Name: ams-lastname-firstname (example: ams-cadiogan-xian)
+Attach and submit your deliverables in this assignment.
+GitHub Repo Name: same as project name
+Create a repo inside the organization created by you teacher. (follow correct naming convention)
+
+
+Academic Management System
+Project Brief
+Project Overview
+You are tasked to design and develop an Academic Management System (AMS).
+The system will manage core academic operations such as:
+User authentication
+
+
+Role-based access control
+
+
+Student management
+
+
+Course management
+
+
+Enrollment
+
+
+Basic reporting
+
+
+The goal is to simulate a real-world academic system used by schools or universities.
+
+Core Objective
+Build a secure, modular, and scalable web application that:
+Uses a RESTful API
+
+
+Implements Role-Based Access Control (RBAC)
+
+
+Connects to a relational database
+
+
+Has a functional frontend interface
+
+
+Follows clean architecture principles
+
+
+
+Functional Requirements
+1️. Authentication & Authorization
+Implement:
+User Registration
+Login (JWT or session-based)
+Password hashing
+Role-based permissions
+
+
+Required Roles:
+Admin
+Registrar
+Instructor
+Student
+
+
+Each role must have different permissions.
+
+
