@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - AMS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Profile</h2>
+    <div id="profileInfo"></div>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script>
+async function loadProfile() {
+    const token = getToken();
+    if(!token) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    const res = await getProfile();
+    const container = document.getElementById("profileInfo");
+
+    if(res.success) {
+        container.innerHTML = `
+            <p><strong>Full Name:</strong> ${res.user.fullName}</p>
+            <p><strong>Email:</strong> ${res.user.email}</p>
+            <p><strong>Role:</strong> ${res.user.role}</p>
+        `;
+    } else if(res.message === "Unauthorized") {
+        container.innerHTML = `<p style="color:red;">${res.message}</p>`;
+    } else {
+        container.innerHTML = `<p style="color:red;">Failed to load profile</p>`;
+    }
+}
+
+loadProfile();
+</script>
+</body>
+</html>

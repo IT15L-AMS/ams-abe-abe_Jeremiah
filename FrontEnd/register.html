@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - AMS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Register</h2>
+    <div class="message" id="message"></div>
+    <form id="registerForm">
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Registrar">Registrar</option>
+            <option value="Instructor">Instructor</option>
+            <option value="Student">Student</option>
+        </select>
+        <button type="submit">Register</button>
+    </form>
+    <a href="index.html">Login</a>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    const res = await registerUser({ fullName, email, password, role });
+    const msg = document.getElementById("message");
+
+    if(res.success) {
+        msg.style.color = "green";
+        msg.textContent = "Registration successful! Redirecting to login...";
+        setTimeout(() => window.location.href = "index.html", 1500);
+    } else {
+        msg.style.color = "red";
+        msg.textContent = res.message || "Registration failed";
+    }
+});
+</script>
+</body>
+</html>
