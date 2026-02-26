@@ -1,8 +1,8 @@
-// api.js - handles API calls
-const API_URL = "http://localhost:3000"; // Change to your backend URL
+// handles API calls
+const API_URL = "http://localhost:3000";
 
 async function registerUser(userData) {
-    const res = await fetch(`${API_URL}/auth/register`, {
+    const res = await fetch(`${API_URL}/api/auth/register`, {  // Changed from /auth to /api/auth
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
@@ -11,7 +11,7 @@ async function registerUser(userData) {
 }
 
 async function loginUser(userData) {
-    const res = await fetch(`${API_URL}/auth/login`, {
+    const res = await fetch(`${API_URL}/api/auth/login`, {  // Changed from /auth to /api/auth
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
@@ -21,7 +21,7 @@ async function loginUser(userData) {
 
 async function getProfile() {
     const token = localStorage.getItem("token");
-    const res = await fetch(`${API_URL}/auth/profile`, {
+    const res = await fetch(`${API_URL}/api/auth/profile`, {  // Changed from /auth to /api/auth
         method: "GET",
         headers: {
             "Content-Type": "application/json",

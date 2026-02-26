@@ -1,4 +1,4 @@
-// auth.js - token & role management
+// token & role management
 function saveToken(token) {
     localStorage.setItem("token", token);
 }

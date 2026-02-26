@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register - AMS</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
@@ -25,16 +25,22 @@
     <a href="index.html">Login</a>
 </div>
 
-<script src="js/api.js"></script>
+<script src="api.js"></script>
 <script>
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
+    console.log("Form submitted!"); // ADD THIS LINE
+    
     const fullName = document.getElementById("fullName").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const role = document.getElementById("role").value;
+    
+    console.log("Sending data:", { fullName, email, password, role }); // ADD THIS
 
     const res = await registerUser({ fullName, email, password, role });
+    console.log("Response:", res); // ADD THIS
+    
     const msg = document.getElementById("message");
 
     if(res.success) {
