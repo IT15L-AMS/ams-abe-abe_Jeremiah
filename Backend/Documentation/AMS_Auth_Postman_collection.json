@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "AMS - Authentication Module",
+    "description": "Academic Management System - Authentication Endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/auth"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Register User",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/register",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john@test.com\",\n  \"password\": \"password123\",\n  \"role\": \"Student\"\n}"
+        }
+      }
+    },
+    {
+      "name": "2. Login",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/login",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@ams.edu\",\n  \"password\": \"password123\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (response.status === 200) {",
+              "    var jsonData = JSON.parse(responseBody);",
+              "    if (jsonData.token) {",
+              "        pm.collectionVariables.set('token', jsonData.token);",
+              "    }",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Get Profile (With Token)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/profile",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "4. Get Profile (Without Token) - Should Fail",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/profile",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      }
+    }
+  ]
+}
